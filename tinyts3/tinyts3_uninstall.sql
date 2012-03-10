@@ -1,0 +1,1 @@
+DELETE FROM {pre}_options WHERE options_mod = 'tinyts3';

@@ -1,0 +1,1 @@
+<textarea class="rte_html" name="{tinymce:name}" cols="50" rows="15" id="{tinymce:name}" style="width: 100%">{tinymce:value}</textarea>

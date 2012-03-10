@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>ClanSphere - {#clansphere_features.clipbox}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/dialog_clipbox.js"></script>
+</head>
+<body>
+
+<fieldset style="padding:10px">
+<legend>{#clansphere_features.clipbox}</legend>
+<form onsubmit="dialog_clipbox.insert();return false;" action="#">
+  <div style="float:right"><input id="clipbox_name" name="clipbox_name" type="text" class="text" size="44" /></div>
+	<div style="float:left"><label>{#clansphere_features.clipbox_name}:</label></div>
+  <hr style="clear:both;width:100%; border:0; padding-top: 7px" />
+  <div style="float:right"><textarea name="clipbox_content" id="clipbox_content" class="text" rows="12" cols="40"></textarea></div>
+	<div style="float:left"><label>{#clansphere_features.clipbox_content}:</label></div>
+  <hr style="clear:both;width:100%; border:0; padding-top: 7px" />
+
+	<div class="mceActionPanel">
+		<div style="float: left">
+			<input type="button" id="insert" name="insert" value="{#insert}" onclick="dialog_clipbox.insert();" />
+		</div>
+
+		<div style="float: right">
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+		</div>
+	</div>
+</form>
+</fieldset>
+</body>
+</html>
