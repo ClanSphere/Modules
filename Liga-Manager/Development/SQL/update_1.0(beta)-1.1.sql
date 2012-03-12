@@ -1,0 +1,1 @@
+ALTER TABLE {pre}_liga_manager_games ADD games_day int(5) NOT NULL default '0';
