@@ -3,7 +3,6 @@
 // $Id: tiny_init.php 400 2010-10-01 08:21:51Z hajo $
 
 // copy domain and session settings from clansphere servervars
-
 $domain = htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES);
 $domain = (strpos($domain, '.') !== FALSE) ? $domain : '';
 
@@ -19,10 +18,11 @@ $mode_abcode = empty($_SESSION['tinymce_mode_abcode']) ? 0 : $_SESSION['tinymce_
 $skin = empty($_SESSION['tinymce_skin']) ? array() : explode('/', $_SESSION['tinymce_skin']);
 $skin_info = !empty($skin[0]) ? $skin[0] : 'default';
 $skin_varn = !empty($skin[1]) ? $skin[1] : '';
-
-if(!empty($mode_abcode)) {
 ?>
 $(function() {
+<?php
+if(!empty($mode_abcode)) {
+?>
   $(document).bind('csAjaxLoad', function(event,element) {
     $(element).find('textarea.rte_abcode').tinymce({
       mode                                : 'specific_textareas',
@@ -48,12 +48,10 @@ $(function() {
       entity_encoding                     : 'raw'
     });
   }).triggerHandler('csAjaxLoad', document.body);
-});
 <?php
 }
 if(!empty($mode)) {
 ?>
-$(function() {
   $(document).bind('csAjaxLoad', function(event,element) {
     $(element).find('textarea.rte_html').tinymce({
       mode                                : 'specific_textareas',
@@ -76,7 +74,7 @@ $(function() {
       use_native_selects                  : true
     });
   }).triggerHandler('csAjaxLoad', document.body);
-});
 <?php
 }
 ?>
+});
