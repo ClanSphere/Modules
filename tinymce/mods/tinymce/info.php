@@ -3,12 +3,12 @@
 // $Id: info.php 614 2011-05-28 12:15:14Z hajo $
 
 $mod_info['name']       = 'TinyMCE';
-$mod_info['version']    = '2011.3 v0.8.1';
-$mod_info['released']   = '2012-02-06';
+$mod_info['version']    = '2011.3 v0.9';
+$mod_info['released']   = '2012-11-17';
 $mod_info['creator']    = 'Moxiecode Systems AB';
 $mod_info['team']       = 'Moxiecode Systems AB';
 $mod_info['url']        = 'tinymce.moxiecode.com';
-$mod_info['text']       = 'Version 3.4.8';
+$mod_info['text']       = 'Version 3.5.7';
 $mod_info['icon']       = 'package_editors';
 $mod_info['show']       = array('abcode/rte_html' => 5, 'abcode/rte_more' => 5, 'options/roots' => 5);
 $mod_info['categories'] = FALSE;
