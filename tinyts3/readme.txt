@@ -1,5 +1,5 @@
-tinyts3 for clansphere v1
--------------------------
+tinyts3 for clansphere 1.1
+--------------------------
 
 requirements:
 
@@ -21,3 +21,10 @@ install steps:
 5. enable tinyts3 by using the {tinyts3:navlist} placeholder inside your template file, e.g. index.htm
 
 6. have fun using it
+
+
+changelog:
+
+0.1   - initial test release
+1.0   - final release containing some bugfixes
+1.1   - fixed some problems with spaces plus minor code optimizations

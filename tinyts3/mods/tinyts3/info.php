@@ -5,8 +5,8 @@
 $cs_lang = cs_translate('tinyts3');
 
 $mod_info['name']       = $cs_lang['mod_name'];
-$mod_info['version']    = '2011.3 v1';
-$mod_info['released']   = '2012-02-06';
+$mod_info['version']    = '2011.3 v1.1';
+$mod_info['released']   = '2013-01-08';
 $mod_info['creator']    = 'ClanSphere';
 $mod_info['team']       = 'ClanSphere';
 $mod_info['url']        = 'www.clansphere.net';
