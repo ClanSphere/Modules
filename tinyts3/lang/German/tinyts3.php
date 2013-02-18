@@ -19,3 +19,8 @@ $cs_lang['dns']          = 'DNS (Domain)';
 $cs_lang['query_port']   = 'Query Port';
 $cs_lang['client_port']  = 'Client Port';
 $cs_lang['ttl']          = 'Cache Lebenszeit';
+
+$cs_lang['info_host']        = 'Bei lokaler Installation "localhost", sonst wie DNS';
+$cs_lang['info_dns']         = 'Externe Adresse zum Verbinden auf den Teamspeak-Server';
+$cs_lang['info_query_port']  = 'Port zum Abfragen der Server-Informationen';
+$cs_lang['info_client_port'] = 'Port auf dem der Teamspeak-Server erreichbar ist';

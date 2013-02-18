@@ -1,6 +1,6 @@
 <?php
 // ClanSphere 2010 - www.clansphere.net
-// $Id: options.php 4603 2010-10-19 16:42:28Z hajo $
+// $Id: $
 
 $cs_lang = cs_translate('news');
 
@@ -18,7 +18,6 @@ if(isset($_POST['submit'])) {
   cs_optionsave('tinyts3', $save);
   
   cs_redirect($cs_lang['success'], 'options', 'roots');
-
 }
 
 $data = array();

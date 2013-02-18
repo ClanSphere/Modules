@@ -1,6 +1,6 @@
 <?php
 // ClanSphere 2010 - www.clansphere.net
-// $Id: navlist.php 4924 2011-06-22 20:03:24Z hajo $
+// $Id: $
 
 $cs_lang = cs_translate('tinyts3');
 
@@ -18,10 +18,16 @@ if(empty($data['ts3']) AND !empty($data['if']['ts3'])) {
   $ts3_info = cs_ts3_status($ts3_config['host'], (int) $ts3_config['query_port'], (int) $ts3_config['client_port']);
 
   $data['ts3']['url'] = $ts3_config['dns'] . ':' . $ts3_config['client_port'];
-  $data['ts3']['version'] = isset($ts3_info['virtualserver_version']) ? cs_secure($ts3_info['virtualserver_version']) : 'Error';
-  $data['ts3']['maxclients'] = isset($ts3_info['virtualserver_maxclients']) ? (int) $ts3_info['virtualserver_maxclients'] : '0';
-  $data['ts3']['online'] = isset($ts3_info['virtualserver_clientsonline']) ? (int) $ts3_info['virtualserver_clientsonline'] : '0';
-  $data['ts3']['users'] = empty($ts3_info['virtualserver_clientlist']) ? $cs_lang['no_clients'] : $ts3_info['virtualserver_clientlist'];
+  $data['ts3']['version'] = cs_secure($ts3_info['version']);
+  $data['ts3']['maxclients'] = (int) $ts3_info['maxclients'];
+  $data['ts3']['online'] = (int) $ts3_info['online'];
+
+  $data['ts3']['users'] = array();
+  foreach($ts3_info['userlist'] AS $name)
+  {
+    $name = cs_secure($name);
+    $data['ts3']['users'][] = array('name' => $name);
+  }
 
   $icon = empty($data['ts3']['online']) ? 'grey' : 'green';
   if(empty($ts3_info))

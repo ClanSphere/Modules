@@ -12,19 +12,19 @@
   <table class="forum" cellpadding="0" cellspacing="{page:cellspacing}" style="width:{page:width}">
     <tr>
       <td class="leftc">{icon:samba} {lang:host}</td>
-      <td class="leftb"><input type="text" name="host" value="{options:host}" maxlength="80" size="40" /></td>
+      <td class="leftb"><input type="text" name="host" value="{options:host}" maxlength="80" size="40" /><br />{lang:info_host}</td>
     </tr>
     <tr>
       <td class="leftc">{icon:network} {lang:dns}</td>
-      <td class="leftb"><input type="text" name="dns" value="{options:dns}" maxlength="80" size="40" /></td>
+      <td class="leftb"><input type="text" name="dns" value="{options:dns}" maxlength="80" size="40" /><br />{lang:info_dns}</td>
     </tr>
     <tr>
       <td class="leftc">{icon:nfs_mount} {lang:query_port}</td>
-      <td class="leftb"><input type="text" name="query_port" value="{options:query_port}" maxlength="20" size="10" /></td>
+      <td class="leftb"><input type="text" name="query_port" value="{options:query_port}" maxlength="20" size="10" /><br />{lang:info_query_port}</td>
     </tr>
     <tr>
       <td class="leftc">{icon:nfs_unmount} {lang:client_port}</td>
-      <td class="leftb"><input type="text" name="client_port" value="{options:client_port}" maxlength="20" size="10" /></td>
+      <td class="leftb"><input type="text" name="client_port" value="{options:client_port}" maxlength="20" size="10" /><br />{lang:info_client_port}</td>
     </tr>
     <tr>
       <td class="leftc">{icon:agt_reload} {lang:ttl}</td>

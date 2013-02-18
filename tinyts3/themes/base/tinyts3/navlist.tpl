@@ -8,6 +8,9 @@ TeamSpeak {ts3:version}<br />
 {lang:online}: <b>{ts3:online}</b> / {ts3:maxclients} {lang:clients}<br /> 
 {lang:refresh}: {ts3:cache_left} {lang:seconds}<br />
 {lang:clientlist}:<br />
-<hr style="width: 100%" />
-{ts3:users}
+<ul>
+{loop:users}
+<li>{users:name}</li>
+{stop:users}
+</ul>
 {stop:ts3}

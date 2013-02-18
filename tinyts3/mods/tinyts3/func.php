@@ -1,17 +1,16 @@
 <?php
+// ClanSphere 2010 - www.clansphere.net
+// $Id: $
 
 function cs_ts3_status($host, $query_port, $client_port) {
-
-  # max length for user nicks (some chars like space count as two)
-  $maxnick = 20;
-  # max length for all user nicks as combined string
-  $maxlen = 70;
 
   # exit when port data is not available
   if(empty($query_port) OR empty($client_port))
     return false;
 
-  $timeout = 10;
+  $timeout = 5;
+
+  ini_set("default_socket_timeout", $timeout);
 
   $ts3_con = @fsockopen($host, $query_port, $errno, $errstr, $timeout);
 
@@ -38,20 +37,20 @@ function cs_ts3_status($host, $query_port, $client_port) {
     fwrite($ts3_con, 'clientlist' . $nl);
     $result['user'] = fread($ts3_con, 4096);
     $result['user_status'] = fread($ts3_con, 4096);
-    
+
+    fclose($ts3_con);
+
+    # format fetched data for later usage
+    $info = array();
     $user = explode(' ', $result['user']);
-    $userlist = '';
+    $info['userlist'];
     foreach($user AS $part)
     {
       $parted = explode('=', $part, 2);
       $unknown = substr($parted[1], 0, 15);
       if($parted[0] == 'client_nickname' AND $unknown != 'Unknown\sfrom\s')
-        $userlist .= (strlen($parted[1]) > $maxnick) ? ', ' . substr($parted[1], 0, ($maxnick-2)) . '..' : ', ' . $parted[1];
+        $info['userlist'][] = str_replace(array('\/','\s','\p'), array('/',' ','|'), $parted[1]);
     }
-    $userlist = substr($userlist, 2);
-    $userlist = str_replace(array('\/','\s','\p'), array('/',' ','|'), $userlist);
-    if(strlen($userlist) > $maxlen)
-      $userlist = substr($userlist, 0, ($maxlen-2)) . '..';
 
     $conf = explode(' ', $result['info']);
     $vars = array();
@@ -61,17 +60,18 @@ function cs_ts3_status($host, $query_port, $client_port) {
       $vars[$parted[0]] = isset($parted[1]) ? $parted[1] : '';
     }
 
+    $info['version'] = isset($vars['virtualserver_version']) ? $vars['virtualserver_version']) : 'Error';
+    $info['maxclients'] = isset($vars['virtualserver_maxclients']) ? (int) $vars['virtualserver_maxclients'] : '0';
+    $info['online'] = isset($vars['virtualserver_clientsonline']) ? (int) $vars['virtualserver_clientsonline'] : '0';
+
     # remove one client count due to the query user
-    if(!empty($vars['virtualserver_clientsonline']))
-      $vars['virtualserver_clientsonline']--;
-      
+    if(!empty($info['online']))
+      $info['online']--;
+
     # remove build info to shorten version information
-    $end = strpos($vars['virtualserver_version'], '\s');
-    $vars['virtualserver_version'] = substr($vars['virtualserver_version'], 0, $end);
+    $end = strpos($info['version'], '\s');
+    $info['version'] = substr($info['version'], 0, $end);
 
-    # set optimized userlist as clientlist var
-    $vars['virtualserver_clientlist'] = $userlist;
-
-    return $vars;
+    return $info;
   }
 }

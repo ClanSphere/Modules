@@ -28,3 +28,4 @@ changelog:
 0.1   - initial test release
 1.0   - final release containing some bugfixes
 1.1   - fixed some problems with spaces plus minor code optimizations
+1.2   - better timeout handling, improved userlist, option info text added
