@@ -22,11 +22,11 @@ if(empty($data['ts3']) AND !empty($data['if']['ts3'])) {
   $data['ts3']['maxclients'] = (int) $ts3_info['maxclients'];
   $data['ts3']['online'] = (int) $ts3_info['online'];
 
-  $data['ts3']['users'] = array();
+  $data['ts3users'] = array();
   foreach($ts3_info['userlist'] AS $name)
   {
     $name = cs_secure($name);
-    $data['ts3']['users'][] = array('name' => $name);
+    $data['ts3users'][] = array('name' => $name);
   }
 
   $icon = empty($data['ts3']['online']) ? 'grey' : 'green';
