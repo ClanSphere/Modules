@@ -60,7 +60,7 @@ function cs_ts3_status($host, $query_port, $client_port) {
       $vars[$parted[0]] = isset($parted[1]) ? $parted[1] : '';
     }
 
-    $info['version'] = isset($vars['virtualserver_version']) ? $vars['virtualserver_version']) : 'Error';
+    $info['version'] = isset($vars['virtualserver_version']) ? $vars['virtualserver_version'] : 'Error';
     $info['maxclients'] = isset($vars['virtualserver_maxclients']) ? (int) $vars['virtualserver_maxclients'] : '0';
     $info['online'] = isset($vars['virtualserver_clientsonline']) ? (int) $vars['virtualserver_clientsonline'] : '0';
 
