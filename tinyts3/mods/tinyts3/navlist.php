@@ -7,7 +7,7 @@ $cs_lang = cs_translate('tinyts3');
 $ts3_config = cs_sql_option(__FILE__, 'tinyts3');
 
 $data = array();
-$data['ts3'] = cs_cache_load('tiny_ts3', $ts3_config['ttl']);
+$data = cs_cache_load('tiny_ts3', $ts3_config['ttl']);
 
 $data['if']['ts3'] = (empty($ts3_config['host']) OR empty($ts3_config['dns'])) ? 0 : 1;
 
@@ -35,7 +35,7 @@ if(empty($data['ts3']) AND !empty($data['if']['ts3'])) {
   $data['ts3']['icon'] = cs_html_img('symbols/clansphere/' . $icon . '.gif', 0, 0, 'style="vertical-align:text-bottom"');
 
   $data['ts3']['time'] = cs_time();
-  cs_cache_save('tiny_ts3', $data['ts3'], $ts3_config['ttl']);
+  cs_cache_save('tiny_ts3', $data, $ts3_config['ttl']);
 }
 
 $data['ts3']['cache_left'] = ($ts3_config['ttl'] - (cs_time() - $data['ts3']['time']));

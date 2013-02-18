@@ -42,8 +42,8 @@ function cs_ts3_status($host, $query_port, $client_port) {
 
     # format fetched data for later usage
     $info = array();
+    $info['userlist'] = array();
     $user = explode(' ', $result['user']);
-    $info['userlist'];
     foreach($user AS $part)
     {
       $parted = explode('=', $part, 2);
