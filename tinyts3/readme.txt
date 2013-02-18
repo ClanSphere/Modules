@@ -1,4 +1,4 @@
-tinyts3 for clansphere 1.1
+tinyts3 for clansphere 1.2
 --------------------------
 
 requirements:
