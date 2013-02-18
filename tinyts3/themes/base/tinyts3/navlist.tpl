@@ -9,8 +9,8 @@ TeamSpeak {ts3:version}<br />
 {lang:refresh}: {ts3:cache_left} {lang:seconds}<br />
 {lang:clientlist}:<br />
 <ul>
-{loop:users}
-<li>{users:name}</li>
-{stop:users}
+{loop:ts3users}
+<li>{ts3users:name}</li>
+{stop:ts3users}
 </ul>
 {stop:ts3}
