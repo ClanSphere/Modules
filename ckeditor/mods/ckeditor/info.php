@@ -3,7 +3,7 @@
 // $Id$
 
 $mod_info['name']       = 'CKEditor';
-$mod_info['version']    = '2012.0 v0.9';
+$mod_info['version']    = '2012.0 v1.0';
 $mod_info['released']   = '2013-03-05';
 $mod_info['creator']    = 'CKSource';
 $mod_info['team']       = 'CKSource';
