@@ -1,11 +1,12 @@
 This repository contains additional modules for ClanSphere.
 
-Module owners:
+Module developers:
 
+CKEditor        - hajo
 Codepaste       - Fr33z3m4n
-feedback        - hajo
+Feedback        - hajo
 Liga-Manager    - Fr33z3m4n
 Newsletter      - Fr33z3m4n
 NewsPDF         - hajo
-tinymce         - hajo
-tinyts3         - hajo
+TinyMCE         - hajo
+TinyTS3         - hajo

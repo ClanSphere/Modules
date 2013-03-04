@@ -1,9 +1,7 @@
-/*.patch
-/*.sqlite
+*.patch
+*.sqlite
 /.buildpath
-/.htaccess
 /.idea
 /.project
 /.settings
-/web.config
 /nbproject
