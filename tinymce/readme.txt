@@ -1,4 +1,4 @@
-tinymce for clansphere 0.9
+tinymce for clansphere 1.0
 --------------------------
 
 requirements:
@@ -47,3 +47,4 @@ changelog:
 0.8   - tinymce update to 3.4.2 - should only be used with clansphere 2011.1 or newer
 0.8.1 - tinymce update to 3.4.8 - should only be used with clansphere 2011.3 or newer
 0.9   - tinymce update to 3.5.7 and bugfixed usage of both editor modes [thanks to skaos]
+1.0   - tinymce update to 3.5.8
