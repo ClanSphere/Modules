@@ -43,17 +43,26 @@ function cs_ts3_status($host, $query_port, $client_port) {
     # format fetched data for later usage
     $info = array();
     $info['userlist'] = array();
-    $user = explode(' ', $result['user']);
-    foreach($user AS $part)
+    $users = explode('|', $result['user']);
+
+    foreach($users AS $user)
     {
-      $parted = explode('=', $part, 2);
-      $unknown = substr($parted[1], 0, 15);
-      if($parted[0] == 'client_nickname' AND $unknown != 'Unknown\sfrom\s')
-        $info['userlist'][] = str_replace(array('\/','\s','\p'), array('/',' ','|'), $parted[1]);
+      $parts = explode(' ', $user);
+      $details = array();
+
+      foreach($parts AS $part)
+      {
+        $sub = explode('=', $part, 2);
+        $details['' . $sub[0] . ''] = $sub[1];
+      }
+
+      if($details['client_type'] == 0)
+        $info['userlist'][] = str_replace(array('\/','\s','\p'), array('/',' ','|'), $details['client_nickname']);
     }
 
     $conf = explode(' ', $result['info']);
     $vars = array();
+
     foreach($conf AS $part)
     {
       $parted = explode('=', $part, 2);
@@ -62,11 +71,9 @@ function cs_ts3_status($host, $query_port, $client_port) {
 
     $info['version'] = isset($vars['virtualserver_version']) ? $vars['virtualserver_version'] : 'Error';
     $info['maxclients'] = isset($vars['virtualserver_maxclients']) ? (int) $vars['virtualserver_maxclients'] : '0';
-    $info['online'] = isset($vars['virtualserver_clientsonline']) ? (int) $vars['virtualserver_clientsonline'] : '0';
 
-    # remove one client count due to the query user
-    if(!empty($info['online']))
-      $info['online']--;
+    # only show real users as online
+    $info['online'] = count($info['userlist']);
 
     # remove build info to shorten version information
     $end = strpos($info['version'], '\s');
