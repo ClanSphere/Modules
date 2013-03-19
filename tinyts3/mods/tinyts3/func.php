@@ -66,7 +66,7 @@ function cs_ts3_status($host, $query_port, $client_port) {
         $details['' . $sub[0] . ''] = isset($sub[1]) ? $sub[1] : '';
       }
 
-      if(isset($details['client_nickname']) AND isset($details['client_type']) AND $details['client_type'] == 0)
+      if(isset($details['client_nickname']) AND isset($details['client_type']) AND $details['client_type'][0] == '0')
         $info['userlist'][] = str_replace(array('\/','\s','\p'), array('/',' ','|'), $details['client_nickname']);
     }
 
