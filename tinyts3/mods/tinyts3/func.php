@@ -39,10 +39,15 @@ function cs_ts3_status($host, $query_port, $client_port) {
     $result['user_status'] = fread($ts3_con, 4096);
 
     fclose($ts3_con);
+    
+    # exit when user data is not available
+    if(empty($result['user']))
+      return false;
 
     # format fetched data for later usage
     $info = array();
     $info['userlist'] = array();
+    
     $users = explode('|', $result['user']);
 
     foreach($users AS $user)
@@ -53,10 +58,10 @@ function cs_ts3_status($host, $query_port, $client_port) {
       foreach($parts AS $part)
       {
         $sub = explode('=', $part, 2);
-        $details['' . $sub[0] . ''] = $sub[1];
+        $details['' . $sub[0] . ''] = isset($sub[1]) ? $sub[1] : '';
       }
 
-      if($details['client_type'] == 0)
+      if(isset($details['client_nickname']) AND isset($details['client_type']) AND $details['client_type'] == 0)
         $info['userlist'][] = str_replace(array('\/','\s','\p'), array('/',' ','|'), $details['client_nickname']);
     }
 
@@ -79,6 +84,7 @@ function cs_ts3_status($host, $query_port, $client_port) {
     $end = strpos($info['version'], '\s');
     $info['version'] = substr($info['version'], 0, $end);
 
+    # return value is now an array - on errors just false
     return $info;
   }
 }
