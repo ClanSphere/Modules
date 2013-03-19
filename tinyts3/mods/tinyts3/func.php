@@ -2,6 +2,26 @@
 // ClanSphere 2010 - www.clansphere.net
 // $Id: $
 
+function cs_ts3_parse($handle, $query) {
+
+  $nl = "\n";
+  $done = false;
+  $result = '';
+  
+  fwrite($handle, $query . $nl);
+
+  while($done == false)
+  {
+    $read = fread($handle, 4096);
+    $result .= $read;
+    $ok = substr($read, -9, 7);
+    if(empty($read) OR $ok == ' msg=ok')
+      $done = true;
+  }
+
+  return $result;
+}
+
 function cs_ts3_status($host, $query_port, $client_port) {
 
   # exit when port data is not available
@@ -19,31 +39,16 @@ function cs_ts3_status($host, $query_port, $client_port) {
     return false;
   }
   else {
-    $nl = "\n";
     $result = array();
-
+    
     stream_set_timeout($ts3_con, $timeout);
 
-    $result['connect'] = fread($ts3_con, 4096);
-    $result['welcome'] = fread($ts3_con, 4096);
-
-    fwrite($ts3_con, "use port=" . $client_port . $nl);
-    $result['status'] = fread($ts3_con, 4096);
-
-    fwrite($ts3_con, 'serverinfo' . $nl);
-    $result['info'] = fread($ts3_con, 4096);
-    $result['info_status'] = fread($ts3_con, 4096);
-  
-    fwrite($ts3_con, 'clientlist' . $nl);
-    $result['user'] = fread($ts3_con, 4096);
-    $result['user_status'] = fread($ts3_con, 4096);
+    $result['connect'] = cs_ts3_parse($ts3_con, 'use port=' . $client_port);
+    $result['info'] = cs_ts3_parse($ts3_con, 'serverinfo');
+    $result['user'] = cs_ts3_parse($ts3_con, 'clientlist');
 
     fclose($ts3_con);
     
-    # exit when user data is not available
-    if(empty($result['user']))
-      return false;
-
     # format fetched data for later usage
     $info = array();
     $info['userlist'] = array();

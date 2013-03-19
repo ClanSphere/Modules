@@ -1,4 +1,4 @@
-tinyts3 for clansphere 1.4
+tinyts3 for clansphere 1.5
 --------------------------
 
 requirements:
@@ -31,3 +31,4 @@ changelog:
 1.2   - better timeout handling, improved userlist, option info text added
 1.3   - bugfixed userlist and improved online users count
 1.4   - improved handling of empty and defect user data
+1.5   - new function handles server response to allow for arbitrary content length
