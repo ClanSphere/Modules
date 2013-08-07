@@ -30,7 +30,8 @@ if (isset($_POST['submit'])) {
   $cs_news['news_headline'] = $_POST['news_headline'];
   
   $news_pdf = empty($_POST['news_pdf']) ? '' : $_POST['news_pdf'];
-  $news_pdf = in_array($news_pdf, $pdf_sources) ? $news_pdf : '';
+
+  $news_pdf = isset($pdf_sources[$news_pdf]) ? $news_pdf : '';
 
   $error = '';
 
