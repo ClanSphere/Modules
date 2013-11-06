@@ -1,5 +1,5 @@
-newspdf for clansphere v1
--------------------------
+newspdf for clansphere v1.0.1
+-----------------------------
 
 requirements:
 
