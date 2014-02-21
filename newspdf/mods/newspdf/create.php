@@ -24,6 +24,9 @@ $pdf_path = $cs_main['def_path'] . '/' . $options['pdf_upload_to'];
 $pdf_sources = cs_paths($pdf_path);
 unset($pdf_sources['index.html']);
 
+$page_start = empty($_POST['page_start']) ? 1 : $_POST['page_start'];
+$page_end   = empty($_POST['page_end']) ? 99 : $_POST['page_end'];
+
 if (isset($_POST['submit'])) {
 
   $cs_news['categories_id'] = empty($_POST['categories_name']) ? $_POST['categories_id'] : cs_categories_create('news', $_POST['categories_name']);
@@ -72,13 +75,15 @@ if(!empty($error) or !isset($_POST['submit'])) {
     }
   }
 
+  $data['pages'] = array('start' => $page_start, 'end' => $page_end);
+  
   echo cs_subtemplate(__FILE__, $data, 'newspdf', 'create');
   
 } else {
 
   require_once 'mods/newspdf/functions.php';
 
-  $cs_news['news_text'] = cs_pdf_to_img($news_pdf);
+  $cs_news['news_text'] = cs_pdf_to_img($news_pdf, $page_start, $page_end);
 
   $news_cells = array_keys($cs_news);
   $news_save = array_values($cs_news);

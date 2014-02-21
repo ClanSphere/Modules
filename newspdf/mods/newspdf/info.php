@@ -5,8 +5,8 @@
 $cs_lang = cs_translate('newspdf');
 
 $mod_info['name']       = $cs_lang['mod_name'];
-$mod_info['version']    = '2011.3 v1.0.1';
-$mod_info['released']   = '2013-06-23';
+$mod_info['version']    = '2011.3 v1.2';
+$mod_info['released']   = '2014-02-21';
 $mod_info['creator']    = 'ClanSphere';
 $mod_info['team']       = 'ClanSphere';
 $mod_info['url']        = 'www.clansphere.net';

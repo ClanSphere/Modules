@@ -1,6 +1,6 @@
 <?php
 
-function cs_pdf_to_img($file) {
+function cs_pdf_to_img($file, $start, $end) {
 
     global $cs_main;
 
@@ -31,6 +31,7 @@ function cs_pdf_to_img($file) {
 
     // Open file to read the number of images
     $imck = new Imagick();
+    $imck->setResolution(2, 2);
     $imck->readImage($file_loc);
 
     $pages = $imck->getNumberImages();
@@ -40,17 +41,38 @@ function cs_pdf_to_img($file) {
     // Create image files and append news text
     $text = '[html]' . "\n";
 
-    for ($page = 0; $page < $pages; $page++) {
+    // Determine start and end page
+    $start = (int) $start;
+    $end   = (int) $end;
 
-        $current = $page + 1;
-        $img_name = $imgs_loc . '_' . $current . '.jpg';
-        $img_link = $imgs_ext . '_' . $current . '.jpg';
-        $pdf_link = $file_ext . '#page=' . $current;
+    if ($start < 1) {
+
+        $start = 1;
+
+    } elseif ($start > $pages) {
+
+        $start = $pages;
+    }
+
+    if ($end < $start) {
+
+        $end = $start;
+
+    } elseif ($end > $pages) {
+
+        $end = $pages;
+    }
+
+    for ($page = $start; $page <= $end; $page++) {
+
+        $img_name = $imgs_loc . '_' . $page . '.jpg';
+        $img_link = $imgs_ext . '_' . $page . '.jpg';
+        $pdf_link = $file_ext . '#page=' . $page;
 
         // Create object and set quality settings
         $isub = new Imagick();
         $isub->setInterlaceScheme(imagick::INTERLACE_NO);
-        $isub->setCompression(imagick::COMPRESSION_NO);
+        $isub->setCompression(imagick::COMPRESSION_JPEG);
 
         // Set DPI if changed in options
         if(!empty($options['pdf_dpi_x']) AND !empty($options['pdf_dpi_y'])) {
@@ -59,7 +81,8 @@ function cs_pdf_to_img($file) {
         }
 
         // Load current part to create an image from
-        $isub->readImage($file_loc . '[' . (int) $page . ']');
+        $last = (int) ($page - 1);
+        $isub->readImage($file_loc . '[' . $last . ']');
 
         // Calculate image width and height
         $s_width  = $isub->getImageWidth();

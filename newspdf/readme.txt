@@ -1,5 +1,5 @@
-newspdf for clansphere v1.0.1
------------------------------
+newspdf for clansphere v1.2
+---------------------------
 
 requirements:
 
@@ -23,3 +23,11 @@ install steps:
 5. the newspdf creation can be found in the admin area and stores entries as news
 
 6. have fun using it
+
+changelog:
+----------
+
+1.0.0 - inital release
+1.0.1 - small fixes
+1.1.0 - improved pdf parsing performance
+1.2.0 - added settings to specify start and end page

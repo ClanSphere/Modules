@@ -32,6 +32,13 @@
       </td>
     </tr>
     <tr>
+      <td class="leftc">{icon:document} {lang:page}</td>
+      <td class="leftb">
+        <input type="text" name="page_start" value="{pages:start}" maxlength="5" size="5" />
+        - <input type="text" name="page_end" value="{pages:end}" maxlength="5" size="5" />
+      </td>
+    </tr>
+    <tr>
       <td class="leftc">{icon:ksysguard} {lang:options}</td>
       <td class="leftb" colspan="2">
         <input type="submit" name="submit" value="{lang:create}" />
